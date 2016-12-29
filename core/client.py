@@ -1,21 +1,29 @@
 #!/usr/bin/env python
 
+import sys
+
 from thrift import Thrift
 from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
 
-from pygen.example import Example
+sys.path.append('gen-py')
+
+from pizza_delivery import (
+    PizzaDelivery,
+    ttypes
+)
 
 
 try:
     transport = TSocket.TSocket('localhost', 30303)
     transport = TTransport.TBufferedTransport(transport)
     protocol = TBinaryProtocol.TBinaryProtocol(transport)
-    client = Example.Client(protocol)
+    client = PizzaDelivery.Client(protocol)
     transport.open()
     print client.ping()
-    client.say('Hello from Python!')
+    print client.getOrderById(1)
+    print client.getAllOrders()
     transport.close()
 
 except Thrift.TException, tx:
