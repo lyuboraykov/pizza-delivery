@@ -1,0 +1,28 @@
+{
+    "pizzas": {
+        "медитеранео": {
+        	"image": "https://www.dominos.bg/gallery/fmobile/1314medium.png",
+            "products": ["доматен сос", "краве сирене", "моцарела", "пресни зелени чушки", "черни маслини", "пресни домати"]
+        },
+        "алфредо": {
+        	"image": "https://www.dominos.bg/gallery/fmobile/1352medium.png",
+        	"products": ["сметана", "моцарела", "пиле", "бейби спанак"]
+        },
+        "вита": {
+        	"image": "https://www.dominos.bg/gallery/fmobile/1351medium.png",
+        	"products": ["доматен сос", "моцарела", "краве сирене", "пресни домати", "бейби спанак"]
+        },
+        "маргарита": {
+        	"image": "https://www.dominos.bg/gallery/fmobile/1265medium.png",
+        	"products": ["доматен сос", "моцарела", "допълнително моцарела"]
+        },
+        "чикенита": {
+        	"image": "https://www.dominos.bg/gallery/fmobile/1341medium.png",
+        	"products": ["доматен сос", "моцарела", "пилешко филе", "пеперони", "домати", "ементал"]
+        },
+        "чик-чи-рик": {
+        	"image": "https://www.dominos.bg/gallery/fmobile/1290medium.png",
+        	"products": ["доматен сос", "моцарела", "крехко пиле", "топено сирене", "царевица"]
+        }
+    }
+}
