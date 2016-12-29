@@ -16,8 +16,8 @@ from thrift.transport import TSSLSocket
 from thrift.transport import THttpClient
 from thrift.protocol import TBinaryProtocol
 
-from example import Example
-from example.ttypes import *
+from pizza_delivery import PizzaDelivery
+from pizza_delivery.ttypes import *
 
 if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print('')
@@ -79,7 +79,7 @@ else:
   else:
     transport = TTransport.TBufferedTransport(socket)
 protocol = TBinaryProtocol.TBinaryProtocol(transport)
-client = Example.Client(protocol)
+client = PizzaDelivery.Client(protocol)
 transport.open()
 
 if cmd == 'ping':

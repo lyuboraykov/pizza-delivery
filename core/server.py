@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
+import sys
+
 from thrift.transport import TSocket
 from thrift.transport import TTransport
+
 from thrift.protocol import TBinaryProtocol
 from thrift.server import TServer
+sys.path.append('gen-py')
 
-from pygen.example import Example
+from pizza_delivery import PizzaDelivery
 
 
-class ExampleHandler:
+class PizzaDeliveryHandler:
     def __init__(self):
         self.log = {}
 
@@ -19,8 +23,8 @@ class ExampleHandler:
         print msg
 
 
-handler = ExampleHandler()
-processor = Example.Processor(handler)
+handler = PizzaDeliveryHandler()
+processor = PizzaDelivery.Processor(handler)
 transport = TSocket.TServerSocket(port=30303)
 tfactory = TTransport.TBufferedTransportFactory()
 pfactory = TBinaryProtocol.TBinaryProtocolFactory()
