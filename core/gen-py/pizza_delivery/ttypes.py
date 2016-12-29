@@ -16,3 +16,403 @@ except:
   fastbinary = None
 
 
+class OrderStatus:
+  PENDING = 0
+  ACCEPTED = 1
+  IN_PROGRESS = 2
+  QUALITY_CONTROL = 3
+  DELIVERING = 4
+  ON_DESTINATION = 5
+
+  _VALUES_TO_NAMES = {
+    0: "PENDING",
+    1: "ACCEPTED",
+    2: "IN_PROGRESS",
+    3: "QUALITY_CONTROL",
+    4: "DELIVERING",
+    5: "ON_DESTINATION",
+  }
+
+  _NAMES_TO_VALUES = {
+    "PENDING": 0,
+    "ACCEPTED": 1,
+    "IN_PROGRESS": 2,
+    "QUALITY_CONTROL": 3,
+    "DELIVERING": 4,
+    "ON_DESTINATION": 5,
+  }
+
+
+class Order:
+  """
+  Attributes:
+   - id
+   - firstName
+   - lastName
+   - deliveryAddress
+   - phoneNumber
+   - pizzaId
+   - status
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.I32, 'id', None, None, ), # 1
+    (2, TType.STRING, 'firstName', None, None, ), # 2
+    (3, TType.STRING, 'lastName', None, None, ), # 3
+    (4, TType.STRING, 'deliveryAddress', None, None, ), # 4
+    (5, TType.STRING, 'phoneNumber', None, None, ), # 5
+    (6, TType.I32, 'pizzaId', None, None, ), # 6
+    (7, TType.I32, 'status', None, None, ), # 7
+  )
+
+  def __init__(self, id=None, firstName=None, lastName=None, deliveryAddress=None, phoneNumber=None, pizzaId=None, status=None,):
+    self.id = id
+    self.firstName = firstName
+    self.lastName = lastName
+    self.deliveryAddress = deliveryAddress
+    self.phoneNumber = phoneNumber
+    self.pizzaId = pizzaId
+    self.status = status
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.I32:
+          self.id = iprot.readI32()
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.firstName = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.STRING:
+          self.lastName = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.STRING:
+          self.deliveryAddress = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.STRING:
+          self.phoneNumber = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 6:
+        if ftype == TType.I32:
+          self.pizzaId = iprot.readI32()
+        else:
+          iprot.skip(ftype)
+      elif fid == 7:
+        if ftype == TType.I32:
+          self.status = iprot.readI32()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('Order')
+    if self.id is not None:
+      oprot.writeFieldBegin('id', TType.I32, 1)
+      oprot.writeI32(self.id)
+      oprot.writeFieldEnd()
+    if self.firstName is not None:
+      oprot.writeFieldBegin('firstName', TType.STRING, 2)
+      oprot.writeString(self.firstName)
+      oprot.writeFieldEnd()
+    if self.lastName is not None:
+      oprot.writeFieldBegin('lastName', TType.STRING, 3)
+      oprot.writeString(self.lastName)
+      oprot.writeFieldEnd()
+    if self.deliveryAddress is not None:
+      oprot.writeFieldBegin('deliveryAddress', TType.STRING, 4)
+      oprot.writeString(self.deliveryAddress)
+      oprot.writeFieldEnd()
+    if self.phoneNumber is not None:
+      oprot.writeFieldBegin('phoneNumber', TType.STRING, 5)
+      oprot.writeString(self.phoneNumber)
+      oprot.writeFieldEnd()
+    if self.pizzaId is not None:
+      oprot.writeFieldBegin('pizzaId', TType.I32, 6)
+      oprot.writeI32(self.pizzaId)
+      oprot.writeFieldEnd()
+    if self.status is not None:
+      oprot.writeFieldBegin('status', TType.I32, 7)
+      oprot.writeI32(self.status)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    if self.id is None:
+      raise TProtocol.TProtocolException(message='Required field id is unset!')
+    if self.firstName is None:
+      raise TProtocol.TProtocolException(message='Required field firstName is unset!')
+    if self.lastName is None:
+      raise TProtocol.TProtocolException(message='Required field lastName is unset!')
+    if self.deliveryAddress is None:
+      raise TProtocol.TProtocolException(message='Required field deliveryAddress is unset!')
+    if self.phoneNumber is None:
+      raise TProtocol.TProtocolException(message='Required field phoneNumber is unset!')
+    if self.pizzaId is None:
+      raise TProtocol.TProtocolException(message='Required field pizzaId is unset!')
+    if self.status is None:
+      raise TProtocol.TProtocolException(message='Required field status is unset!')
+    return
+
+
+  def __hash__(self):
+    value = 17
+    value = (value * 31) ^ hash(self.id)
+    value = (value * 31) ^ hash(self.firstName)
+    value = (value * 31) ^ hash(self.lastName)
+    value = (value * 31) ^ hash(self.deliveryAddress)
+    value = (value * 31) ^ hash(self.phoneNumber)
+    value = (value * 31) ^ hash(self.pizzaId)
+    value = (value * 31) ^ hash(self.status)
+    return value
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class OrderRequest:
+  """
+  Attributes:
+   - firstName
+   - lastName
+   - deliveryAddress
+   - phoneNumber
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.STRING, 'firstName', None, None, ), # 1
+    (2, TType.STRING, 'lastName', None, None, ), # 2
+    (3, TType.STRING, 'deliveryAddress', None, None, ), # 3
+    (4, TType.STRING, 'phoneNumber', None, None, ), # 4
+  )
+
+  def __init__(self, firstName=None, lastName=None, deliveryAddress=None, phoneNumber=None,):
+    self.firstName = firstName
+    self.lastName = lastName
+    self.deliveryAddress = deliveryAddress
+    self.phoneNumber = phoneNumber
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.STRING:
+          self.firstName = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.lastName = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.STRING:
+          self.deliveryAddress = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.STRING:
+          self.phoneNumber = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('OrderRequest')
+    if self.firstName is not None:
+      oprot.writeFieldBegin('firstName', TType.STRING, 1)
+      oprot.writeString(self.firstName)
+      oprot.writeFieldEnd()
+    if self.lastName is not None:
+      oprot.writeFieldBegin('lastName', TType.STRING, 2)
+      oprot.writeString(self.lastName)
+      oprot.writeFieldEnd()
+    if self.deliveryAddress is not None:
+      oprot.writeFieldBegin('deliveryAddress', TType.STRING, 3)
+      oprot.writeString(self.deliveryAddress)
+      oprot.writeFieldEnd()
+    if self.phoneNumber is not None:
+      oprot.writeFieldBegin('phoneNumber', TType.STRING, 4)
+      oprot.writeString(self.phoneNumber)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    if self.firstName is None:
+      raise TProtocol.TProtocolException(message='Required field firstName is unset!')
+    if self.lastName is None:
+      raise TProtocol.TProtocolException(message='Required field lastName is unset!')
+    if self.deliveryAddress is None:
+      raise TProtocol.TProtocolException(message='Required field deliveryAddress is unset!')
+    if self.phoneNumber is None:
+      raise TProtocol.TProtocolException(message='Required field phoneNumber is unset!')
+    return
+
+
+  def __hash__(self):
+    value = 17
+    value = (value * 31) ^ hash(self.firstName)
+    value = (value * 31) ^ hash(self.lastName)
+    value = (value * 31) ^ hash(self.deliveryAddress)
+    value = (value * 31) ^ hash(self.phoneNumber)
+    return value
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class Pizza:
+  """
+  Attributes:
+   - id
+   - imageUrl
+   - products
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.I32, 'id', None, None, ), # 1
+    (2, TType.STRING, 'imageUrl', None, None, ), # 2
+    (3, TType.LIST, 'products', (TType.STRING,None), None, ), # 3
+  )
+
+  def __init__(self, id=None, imageUrl=None, products=None,):
+    self.id = id
+    self.imageUrl = imageUrl
+    self.products = products
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.I32:
+          self.id = iprot.readI32()
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.imageUrl = iprot.readString()
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.LIST:
+          self.products = []
+          (_etype3, _size0) = iprot.readListBegin()
+          for _i4 in xrange(_size0):
+            _elem5 = iprot.readString()
+            self.products.append(_elem5)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('Pizza')
+    if self.id is not None:
+      oprot.writeFieldBegin('id', TType.I32, 1)
+      oprot.writeI32(self.id)
+      oprot.writeFieldEnd()
+    if self.imageUrl is not None:
+      oprot.writeFieldBegin('imageUrl', TType.STRING, 2)
+      oprot.writeString(self.imageUrl)
+      oprot.writeFieldEnd()
+    if self.products is not None:
+      oprot.writeFieldBegin('products', TType.LIST, 3)
+      oprot.writeListBegin(TType.STRING, len(self.products))
+      for iter6 in self.products:
+        oprot.writeString(iter6)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    if self.id is None:
+      raise TProtocol.TProtocolException(message='Required field id is unset!')
+    if self.imageUrl is None:
+      raise TProtocol.TProtocolException(message='Required field imageUrl is unset!')
+    if self.products is None:
+      raise TProtocol.TProtocolException(message='Required field products is unset!')
+    return
+
+
+  def __hash__(self):
+    value = 17
+    value = (value * 31) ^ hash(self.id)
+    value = (value * 31) ^ hash(self.imageUrl)
+    value = (value * 31) ^ hash(self.products)
+    return value
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
