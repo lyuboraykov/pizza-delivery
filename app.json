@@ -1,0 +1,18 @@
+{
+  "name": "Pizza Delivery pizza-rupy",
+  "description": "A simple distributed app for pizza delivery",
+  "keywords": [
+    "pizza",
+    "ruby",
+    "python",
+    "thrift"
+  ],
+  "repository": "https://github.com/lyuboraykov/pizza-delivery",
+  "success_url": "/",
+  "image": "heroku/ruby",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ruby"
+    }
+  ]
+}
