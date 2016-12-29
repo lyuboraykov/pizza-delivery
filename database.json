@@ -1,0 +1,32 @@
+{
+    "orders": {
+        "1": {
+            "firstName": "Lyubo",
+            "lastName": "Raykov",
+            "deliveryAddress": "Rahovtsi",
+            "phonenumber": "0886 108 298",
+            "pizzaId": 2,
+            "status": "PENDING"
+        },
+        "2": {
+            "firstName": "Martin",
+            "lastName": "Hristov",
+            "deliveryAddress": "Dryanovo",
+            "phonenumber": "0886 108 123",
+            "pizzaId": 1,
+            "status": "ACCEPTED"
+        }
+    },
+    "pizzas": {
+        "1": {
+            "name": "Margarita",
+            "imageUrl": "/images/sth.png",
+            "products": ["pepperoni", "cheese"]
+        },
+        "2": {
+            "name": "Martinitta",
+            "imageUrl": "/images/m.png",
+            "products": ["peppers", "cheese"]
+        }
+    }
+}
