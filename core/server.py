@@ -14,24 +14,8 @@ from pizza_delivery import (
     ttypes
 )
 
-STUB_ORDER_1 = ttypes.Order(1,
-                            'Lyubo',
-                            'Raykov',
-                            'village Rahovtsi',
-                            '0886108208',
-                            1,
-                            ttypes.OrderStatus.IN_PROGRESS)
-
-STUB_ORDER_2 = ttypes.Order(2,
-                            'Martin',
-                            'Hristov',
-                            'Dryanovo',
-                            '0895181786',
-                            2,
-                            ttypes.OrderStatus.ACCEPTED)
-
-STUB_PIZZA_1 = ttypes.Pizza(1, 'sample-image.png', ['peppers', 'cheese'])
-STUB_PIZZA_2 = ttypes.Pizza(1, 'sample-image2.png', ['tomatos', 'cheese'])
+from lib.orders_repository import OrdersRepository
+from lib.pizzas_repository import PizzasRepository
 
 
 class PizzaDeliveryHandler:
@@ -42,19 +26,16 @@ class PizzaDeliveryHandler:
         return "pong"
 
     def getOrderById(self, id):
-        return STUB_ORDER_1
+        return OrdersRepository.get_order_by_id(id)
 
     def getAllOrders(self):
-        return [STUB_ORDER_1, STUB_ORDER_2]
+        return OrdersRepository.get_all_orders()
 
     def makeOrder(self, order_req):
-        return STUB_ORDER_1
+        return OrdersRepository.make_order(order_req)
 
     def getAvailablePizzas(self):
-        return {
-            'margaritta': STUB_PIZZA_1,
-            'martinitta': STUB_PIZZA_2
-        }
+        return PizzasRepository.get_available_pizzas()
 
 
 handler = PizzaDeliveryHandler()
@@ -67,4 +48,3 @@ server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)
 
 print "Starting python server..."
 server.serve()
-print "done!"

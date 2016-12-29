@@ -1,1 +1,2 @@
 thrift==0.9.3
+python-firebase==1.2
