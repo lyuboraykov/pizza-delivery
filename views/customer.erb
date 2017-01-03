@@ -16,25 +16,30 @@
       <label for="name">Телефон:</label>
       <input type="phone" name="phone" id="phone">
 
-      <button id="next-button">Напред</button>
+      <button class="next-button">Напред</button>
     </div>
 
-    <div class="pizzas-container">
-      <div class="pizza-wrapper" id="1">
-        <div class="pizza-image">
-        </div>
-        <div class="pizza-description">
-          <p class="pizza-heading">МЕДИТЕРАНЕО</p>
-          <hr class="pizza-heading-separator">
-          <p class="pizza-ingredients">моцарела, доматен сос, пресни домати, зелени чушки, краве сирене, маслини                                 </p>
-        </div>
-        <div class="pizza-order">
-          <button>Добави в количка</button>
-        </div>
+    <div class="pizzas-form hidden"> 
+      <div class="pizzas-container">
+        <% pizzas[:pizzas].each do |pizza| %>
+          <div class="pizza-wrapper" id="<%= pizza[1][:id] %>">
+            <div class="pizza-image" style="background-image: url('<%= pizza[1][:image]%>')">
+            </div>
+            <div class="pizza-description">
+              <p class="pizza-heading"><%= pizza[0] %></p>
+              <hr class="pizza-heading-separator">
+              <p class="pizza-ingredients"><%= pizza[1][:products].join ", " %></p>
+            </div>
+            <div class="pizza-order">
+              <button>Добави в количка</button>
+            </div>
+          </div>
+        <% end %>
       </div>
+      <button class="next-button">Напред</button>
     </div>
 
-    <div class="order-review">
+    <div class="order-review hidden">
       <p>Some preview stuff here ..</p>
 
       <button id="order-pizza">Поръчай</button>

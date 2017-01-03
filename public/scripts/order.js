@@ -13,8 +13,6 @@ button.addEventListener("click", function() {
       pizzaId
   };
 
-  console.log(order);
-
   $.ajax({
       url: "/order",
       method: "POST",
@@ -36,4 +34,16 @@ document.querySelectorAll(".pizza-order button").forEach(function(button) {
   button.addEventListener("click", function() {
     localStorage.pizzaId = this.parentElement.parentElement.getAttribute("id");
   });
+});
+
+$('.next-button').click(function(event) {
+  let section = $(this).parent(),
+    parent = section.parent(),
+    indexOfThis = parent.children().index(section);
+
+  section.fadeOut(100);
+  $(parent.children()[indexOfThis + 1]).fadeIn({ "duration": 100, done: function() {
+    this.style.display = "flex";
+  }});
+
 });
