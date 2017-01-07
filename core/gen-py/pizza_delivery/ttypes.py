@@ -44,8 +44,7 @@ class Order:
   """
   Attributes:
    - id
-   - firstName
-   - lastName
+   - name
    - deliveryAddress
    - phoneNumber
    - pizzaId
@@ -55,18 +54,17 @@ class Order:
   thrift_spec = (
     None, # 0
     (1, TType.I32, 'id', None, None, ), # 1
-    (2, TType.STRING, 'firstName', None, None, ), # 2
-    (3, TType.STRING, 'lastName', None, None, ), # 3
+    (2, TType.STRING, 'name', None, None, ), # 2
+    None, # 3
     (4, TType.STRING, 'deliveryAddress', None, None, ), # 4
     (5, TType.STRING, 'phoneNumber', None, None, ), # 5
     (6, TType.I32, 'pizzaId', None, None, ), # 6
     (7, TType.I32, 'status', None, None, ), # 7
   )
 
-  def __init__(self, id=None, firstName=None, lastName=None, deliveryAddress=None, phoneNumber=None, pizzaId=None, status=None,):
+  def __init__(self, id=None, name=None, deliveryAddress=None, phoneNumber=None, pizzaId=None, status=None,):
     self.id = id
-    self.firstName = firstName
-    self.lastName = lastName
+    self.name = name
     self.deliveryAddress = deliveryAddress
     self.phoneNumber = phoneNumber
     self.pizzaId = pizzaId
@@ -88,12 +86,7 @@ class Order:
           iprot.skip(ftype)
       elif fid == 2:
         if ftype == TType.STRING:
-          self.firstName = iprot.readString()
-        else:
-          iprot.skip(ftype)
-      elif fid == 3:
-        if ftype == TType.STRING:
-          self.lastName = iprot.readString()
+          self.name = iprot.readString()
         else:
           iprot.skip(ftype)
       elif fid == 4:
@@ -130,13 +123,9 @@ class Order:
       oprot.writeFieldBegin('id', TType.I32, 1)
       oprot.writeI32(self.id)
       oprot.writeFieldEnd()
-    if self.firstName is not None:
-      oprot.writeFieldBegin('firstName', TType.STRING, 2)
-      oprot.writeString(self.firstName)
-      oprot.writeFieldEnd()
-    if self.lastName is not None:
-      oprot.writeFieldBegin('lastName', TType.STRING, 3)
-      oprot.writeString(self.lastName)
+    if self.name is not None:
+      oprot.writeFieldBegin('name', TType.STRING, 2)
+      oprot.writeString(self.name)
       oprot.writeFieldEnd()
     if self.deliveryAddress is not None:
       oprot.writeFieldBegin('deliveryAddress', TType.STRING, 4)
@@ -160,10 +149,8 @@ class Order:
   def validate(self):
     if self.id is None:
       raise TProtocol.TProtocolException(message='Required field id is unset!')
-    if self.firstName is None:
-      raise TProtocol.TProtocolException(message='Required field firstName is unset!')
-    if self.lastName is None:
-      raise TProtocol.TProtocolException(message='Required field lastName is unset!')
+    if self.name is None:
+      raise TProtocol.TProtocolException(message='Required field name is unset!')
     if self.deliveryAddress is None:
       raise TProtocol.TProtocolException(message='Required field deliveryAddress is unset!')
     if self.phoneNumber is None:
@@ -178,8 +165,7 @@ class Order:
   def __hash__(self):
     value = 17
     value = (value * 31) ^ hash(self.id)
-    value = (value * 31) ^ hash(self.firstName)
-    value = (value * 31) ^ hash(self.lastName)
+    value = (value * 31) ^ hash(self.name)
     value = (value * 31) ^ hash(self.deliveryAddress)
     value = (value * 31) ^ hash(self.phoneNumber)
     value = (value * 31) ^ hash(self.pizzaId)

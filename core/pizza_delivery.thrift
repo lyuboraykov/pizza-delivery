@@ -8,8 +8,7 @@ enum OrderStatus {
 
 struct Order {
     1: required i32 id
-    2: required string firstName
-    3: required string lastName
+    2: required string name
     4: required string deliveryAddress
     5: required string phoneNumber
     6: required i32 pizzaId

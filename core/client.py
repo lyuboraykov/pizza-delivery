@@ -25,6 +25,15 @@ try:
     print client.getOrderById(1)
     print client.getAllOrders()
     print client.getAvailablePizzas()
+
+    order_req = ttypes.OrderRequest(
+        name='lyubo',
+        deliveryAddress='test address',
+        phoneNumber='0881 11 22 33',
+        pizzaId=1
+    )
+    print client.makeOrder(order_req)
+
     transport.close()
 
 except Thrift.TException, tx:
