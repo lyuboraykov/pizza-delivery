@@ -1,7 +1,6 @@
 enum OrderStatus {
     PENDING
-    ACCEPTED
-    IN_PROGRESS
+    COOKING
     QUALITY_CONTROL
     DELIVERING
     ON_DESTINATION
