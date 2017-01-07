@@ -6,7 +6,9 @@ post '/order' do
     order_settings["pizzaId"] = order_settings["pizzaId"].to_i
     order_request = OrderRequest.new order_settings
 
-    RpcCaller::call_method :makeOrder, order_request
+    order = RpcCaller::call_method :makeOrder, order_request
+
+    order.id.to_s
 end
 
 get '/orders/:order_id/view' do
@@ -17,5 +19,9 @@ get '/orders/:order_id/view' do
 end
 
 get '/update_status/:order_id' do
-  'test'
+  order_id = params['order_id'].to_i
+
+  order = RpcCaller::call_method :getOrderById, order_id
+
+  order.status.to_s
 end

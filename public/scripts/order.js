@@ -1,6 +1,6 @@
 let button = document.getElementById("order-pizza");
 
-button.addEventListener("click", function() {
+button && button.addEventListener("click", function() {
   let name = document.getElementById("name").value,
       deliveryAddress = document.getElementById("address").value,
       phoneNumber = document.getElementById("phone").value,
@@ -28,7 +28,6 @@ button.addEventListener("click", function() {
       }
   });
 });
-
 
 document.querySelectorAll(".pizza-order button").forEach(function(button) {
   button.addEventListener("click", function() {

@@ -9,13 +9,10 @@ class RpcCaller
 
       transport.open()
 
-      # response = client.method(method_name).call(arguments)
+      result = client.method(method_name).call(arguments)
+      transport.close()
 
-      p client
-      response = client.getOrderById(1)
-
-
-
+      result
     rescue Thrift::Exception => tx
       print 'Thrift::Exception: ', tx.message, "\n"
     end
