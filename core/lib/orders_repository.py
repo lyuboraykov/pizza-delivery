@@ -25,29 +25,7 @@ class OrdersRepository(object):
     @classmethod
     def get_order_by_id(cls, order_id):
         order_dict = db.get('/orders', order_id)
-        return cls._order_from_dict(order_id, order_dict)
-
-    @classmethod
-    def _order_from_dict(cls, order_id, order_dict):
-        order = ttypes.Order(order_id,
-                             order_dict['name'],
-                             order_dict['deliveryAddress'],
-                             order_dict['phonenumber'],
-                             int(order_dict['pizzaId']),
-                             cls._get_status_enum_val_from_name(
-                                 order_dict['status']))
-        return order
-
-    @classmethod
-    def _dict_from_order(cls, order):
-        return {
-            'id': order.id,
-            'name': order.name,
-            'deliveryAddress': order.deliveryAddress,
-            'phonenumber': order.phoneNumber,
-            'pizzaId': order.pizzaId,
-            'status': cls._get_status_enum_name_from_val(order.status)
-        }
+        return cls._dict_to_order(order_id, order_dict)
 
     @classmethod
     def get_all_orders(cls):
@@ -56,8 +34,8 @@ class OrdersRepository(object):
         for order_id, order_dict in enumerate(orders_dict):
             if not order_dict:
                 continue
-            orders.append(cls._order_from_dict(int(order_id),
-                                                   order_dict))
+            orders.append(cls._dict_to_order(int(order_id),
+                                             order_dict))
         return orders
 
     @classmethod
@@ -72,8 +50,14 @@ class OrdersRepository(object):
             pizzaId=order_req.pizzaId,
             status=ttypes.OrderStatus.PENDING
         )
-        order_dict = cls._dict_from_order(order)
-        db.put('/orders/', new_id, order_dict)
+        cls._set_order_by_id(new_id, order)
+        return order
+
+    @classmethod
+    def update_order_status(cls, order_id, status):
+        order = cls.get_order_by_id(order_id)
+        order.status = status
+        cls._set_order_by_id(order_id, order)
         return order
 
     @classmethod
@@ -83,3 +67,30 @@ class OrdersRepository(object):
     @classmethod
     def _get_status_enum_name_from_val(cls, val):
         return ttypes.OrderStatus._VALUES_TO_NAMES[val]
+
+    @classmethod
+    def _set_order_by_id(cls, order_id, order):
+        order_dict = cls._order_to_dict(order)
+        db.put('/orders/', order_id, order_dict)
+
+    @classmethod
+    def _dict_to_order(cls, order_id, order_dict):
+        order = ttypes.Order(order_id,
+                             order_dict['name'],
+                             order_dict['deliveryAddress'],
+                             order_dict['phonenumber'],
+                             int(order_dict['pizzaId']),
+                             cls._get_status_enum_val_from_name(
+                                 order_dict['status']))
+        return order
+
+    @classmethod
+    def _order_to_dict(cls, order):
+        return {
+            'id': order.id,
+            'name': order.name,
+            'deliveryAddress': order.deliveryAddress,
+            'phonenumber': order.phoneNumber,
+            'pizzaId': order.pizzaId,
+            'status': cls._get_status_enum_name_from_val(order.status)
+        }

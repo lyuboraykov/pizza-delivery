@@ -33,6 +33,9 @@ class PizzaDeliveryHandler:
     def makeOrder(self, order_req):
         return OrdersRepository.make_order(order_req)
 
+    def updateOrderStatus(self, id, status):
+        return OrdersRepository.update_order_status(id, status)
+
     def getAvailablePizzas(self):
         return PizzasRepository.get_available_pizzas()
 
