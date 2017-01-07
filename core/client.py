@@ -24,6 +24,7 @@ try:
     print client.ping()
     print client.getOrderById(1)
     print client.getAllOrders()
+    print client.getAvailablePizzas()
     transport.close()
 
 except Thrift.TException, tx:

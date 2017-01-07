@@ -12,7 +12,7 @@ STUB_ORDER_1 = ttypes.Order(1,
                             'village Rahovtsi',
                             '0886108208',
                             1,
-                            ttypes.OrderStatus.IN_PROGRESS)
+                            ttypes.OrderStatus.COOKING)
 
 STUB_ORDER_2 = ttypes.Order(2,
                             'Martin',
@@ -20,7 +20,7 @@ STUB_ORDER_2 = ttypes.Order(2,
                             'Dryanovo',
                             '0895181786',
                             2,
-                            ttypes.OrderStatus.ACCEPTED)
+                            ttypes.OrderStatus.DELIVERING)
 
 class OrdersRepository(object):
 
