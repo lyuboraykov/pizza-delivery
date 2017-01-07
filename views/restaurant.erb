@@ -1,18 +1,14 @@
 <div class="restaurant-orders">
   <div class="master-view">
     <ul class="orders-list">
-      <li class="order-item">
-        <span class="order-title">Поръчка 1</span>
-        <span class="order-id">></span>
-    </li>
-      <li class="order-item">
-        <span class="order-title">Поръчка 1</span>
-        <span class="order-id">></span>
+      <li class="order-item order-title" >
+        <span class="order-title">Поръчки</span>
       </li>
-      <li class="order-item">
-        <span class="order-title">Поръчка 1</span>
-        <span class="order-id">></span>
-      </li>
+      <% orders.each do |order| %>
+        <li class="order-item" data-order-id=<%= order.id %> >
+          <span class="order-title">Поръчка <%= order.id %></span>
+        </li>
+      <% end %>
 
     </ul>
   </div>

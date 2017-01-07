@@ -226,12 +226,16 @@ body,
 
 .restaurant-orders {
     display: flex;
+    height: 100%;
 }
 
 .master-view,
 .details-view {
     width: 50%;
-    border: 1px solid black;
+}
+
+.master-view {
+    border-right: 1px solid black;
 }
 
 .order-item {
@@ -240,6 +244,21 @@ body,
     font-family: "72-Web", Arial, Helvetica, sans-serif;
     font-size: 1rem;
     border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.order-item.order-title {
+    cursor: default;
+}
+
+.order-item.order-title:hover {
+    border-color: black;
+    color: black;
+}
+
+.order-item:hover {
+    border-color: blue;
+    color: blue;
 }
 
 .order-item > span {
