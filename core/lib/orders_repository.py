@@ -6,19 +6,6 @@ from pizza_delivery import ttypes
 
 from lib.db import db
 
-STUB_ORDER_1 = ttypes.Order(1,
-                            'Lyubo',
-                            'village Rahovtsi',
-                            '0886108208',
-                            1,
-                            ttypes.OrderStatus.COOKING)
-
-STUB_ORDER_2 = ttypes.Order(2,
-                            'Martin',
-                            'Dryanovo',
-                            '0895181786',
-                            2,
-                            ttypes.OrderStatus.DELIVERING)
 
 class OrdersRepository(object):
 
@@ -76,8 +63,8 @@ class OrdersRepository(object):
     @classmethod
     def _dict_to_order(cls, order_id, order_dict):
         order = ttypes.Order(order_id,
-                             order_dict['name'],
-                             order_dict['deliveryAddress'],
+                             order_dict['name'].encode('utf-8'),
+                             order_dict['deliveryAddress'].encode('utf-8'),
                              order_dict['phonenumber'],
                              int(order_dict['pizzaId']),
                              cls._get_status_enum_val_from_name(

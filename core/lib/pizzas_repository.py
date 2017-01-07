@@ -7,9 +7,6 @@ from pizza_delivery import ttypes
 from lib.db import db
 
 
-STUB_PIZZA_1 = ttypes.Pizza(1, 'sample-image.png', ['peppers', 'cheese'])
-STUB_PIZZA_2 = ttypes.Pizza(1, 'sample-image2.png', ['tomatos', 'cheese'])
-
 class PizzasRepository(object):
 
     @classmethod
