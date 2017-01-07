@@ -1,8 +1,21 @@
-post '/order' do
-  # perform call to the thrift and return an order ID
-  puts params
+require_relative '../gen-rb/pizza_delivery'
 
-  "1"
+post '/order' do
+
+  # begin
+  #   port = 30303
+
+  #   transport = Thrift::BufferedTransport.new(Thrift::Socket.new('localhost', port))
+  #   protocol = Thrift::BinaryProtocol.new(transport)
+  #   client = PizzaDelivery::Client.new(protocol)
+
+  #   transport.open()
+
+  #   client.ping()
+
+  # rescue Thrift::Exception => tx
+  #   print 'Thrift::Exception: ', tx.message, "\n"
+  # end
 end
 
 get '/orders/:order_id' do
