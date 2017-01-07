@@ -9,12 +9,12 @@
 
   <main class="main">
     <div class="contact-form">
-      <label for="name">Име:</label>
-      <input type="input" name="name" id="name">
-      <label for="name">Адрес:</label>
-      <input type="input" name="address" id="address">
-      <label for="name">Телефон:</label>
-      <input type="phone" name="phone" id="phone">
+      <label for="name" class="order-input-label">Име:</label>
+      <input type="input" class="order-input" name="name" id="name">
+      <label for="name" class="order-input-label">Адрес:</label>
+      <input type="input" class="order-input" name="address" id="address">
+      <label for="name" class="order-input-label">Телефон:</label>
+      <input type="phone" class="order-input" name="phone" id="phone">
 
       <button class="next-button">Напред</button>
     </div>
@@ -40,7 +40,15 @@
     </div>
 
     <div class="order-review hidden">
-      <p>Some preview stuff here ..</p>
+      <h2>Преглед на поръчката</h2>
+
+      <div class="review-container">
+        <span>Име: Мартин Христов</span>
+        <span>Адрес: София, Студентски град, 42Б</span>
+        <span>Телефон: +359 899 179 582</span>
+
+        <span>Пица: алфредо</span>
+      </div>
 
       <button id="order-pizza">Поръчай</button>
     </div>

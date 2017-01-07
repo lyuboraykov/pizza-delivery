@@ -32,6 +32,7 @@ body,
     display: flex;
     flex-direction: column;
     width: 50%;
+    padding-top: 10%;
 }
 
 .next-button {
@@ -100,6 +101,8 @@ body,
 .pizza-heading {
     padding: 10px 0;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .pizza-ingredients {
@@ -115,3 +118,132 @@ body,
 .order-review {
     flex-direction: column;
 }
+
+.order-input {
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: none;
+    font-size: 24px;
+}
+
+.order-input-label {
+    margin-top: 5%;
+    text-align: center;
+    font-size: 24px;
+}
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-container span {
+    margin-top: 5%;
+    font-size: 24px;
+}
+
+.order-review {
+    padding-top: 10%;
+}
+
+.order-review h2 {
+    font-size: 3rem;
+}
+
+#order-pizza {
+    height: 2rem;
+    margin-top: 10%;
+    font-size: 1rem;
+}
+
+.customer_status h1 {
+    text-align: center;
+}
+
+.customer_status {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.progress_container {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+}
+
+.status {
+    width: 20%;
+    height: 100px;
+    border: 1px solid black;
+    margin-left: 1px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    align-items: center;
+}
+
+.pizza-logo {
+    width: 400px;
+    height: 300px;
+}
+
+.done {
+    color: #2b7d2b;
+    background-color: #B0FA6D;
+}
+
+.active {
+    animation-duration: 1000ms;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    -webkit-animation: blink 1000ms infinite;
+    /* Safari and Chrome */
+}
+
+@keyframes blink {
+    from {
+        background-color: white;
+    }
+    to {
+        background-color: #B0FA6D;
+    }
+}
+
+@-webkit-keyframes blink {
+    from {
+        background-color: white;
+    }
+    to {
+        background-color: #B0FA6D;
+    }
+}
+
+.restaurant-orders {
+    display: flex;
+}
+
+.master-view,
+.details-view {
+    width: 50%;
+    border: 1px solid black;
+}
+
+.order-item {
+    padding: 0 1rem;
+    height: 48px;
+    font-family: "72-Web", Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    border-bottom: 1px solid black;
+}
+
+.order-item > span {
+    line-height: 3rem;
+}
+
+.order-item-wrapper {}

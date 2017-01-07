@@ -19,8 +19,9 @@ button.addEventListener("click", function() {
       data: order,
       dataType: "json",
       statusCode: {
-          200: function() {
-              // window.location.href = "/order";
+          200: function(orderId) {
+              console.log(orderId);
+              window.location.href = "/orders/" + orderId;
           },
           403: function() {
               alert("Поръчката не беше успешна!");
@@ -41,9 +42,11 @@ $('.next-button').click(function(event) {
     parent = section.parent(),
     indexOfThis = parent.children().index(section);
 
-  section.fadeOut(100);
-  $(parent.children()[indexOfThis + 1]).fadeIn({ "duration": 100, done: function() {
-    this.style.display = "flex";
-  }});
+  section.fadeOut(400);
 
+  setTimeout(function() {
+    $(parent.children()[indexOfThis + 1]).fadeIn({ "duration": 400, done: function() {
+      this.style.display = "flex";
+    }});
+  }, 400);
 });
