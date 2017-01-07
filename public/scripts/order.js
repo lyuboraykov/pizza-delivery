@@ -2,14 +2,14 @@ let button = document.getElementById("order-pizza");
 
 button.addEventListener("click", function() {
   let name = document.getElementById("name").value,
-      address = document.getElementById("address").value,
-      phone = document.getElementById("phone").value,
+      deliveryAddress = document.getElementById("address").value,
+      phoneNumber = document.getElementById("phone").value,
       pizzaId = window.localStorage.pizzaId;
 
   let order = {
       name,
-      address,
-      phone,
+      deliveryAddress,
+      phoneNumber,
       pizzaId
   };
 
@@ -20,8 +20,7 @@ button.addEventListener("click", function() {
       dataType: "json",
       statusCode: {
           200: function(orderId) {
-              console.log(orderId);
-              window.location.href = "/orders/" + orderId;
+              window.location.href = "/orders/" + orderId + "/view";
           },
           403: function() {
               alert("Поръчката не беше успешна!");

@@ -22,4 +22,4 @@ function myPeriodicMethod() {
 }
 
 // schedule the first invocation:
-setTimeout(myPeriodicMethod, 3000);
+// setTimeout(myPeriodicMethod, 3000);

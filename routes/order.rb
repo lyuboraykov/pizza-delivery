@@ -1,29 +1,19 @@
 require_relative '../gen-rb/pizza_delivery'
+require_relative '../helpers/rpc_caller'
 
 post '/order' do
+    order_settings = params
+    order_settings["pizzaId"] = order_settings["pizzaId"].to_i
+    order_request = OrderRequest.new order_settings
 
-  # begin
-  #   port = 30303
-
-  #   transport = Thrift::BufferedTransport.new(Thrift::Socket.new('localhost', port))
-  #   protocol = Thrift::BinaryProtocol.new(transport)
-  #   client = PizzaDelivery::Client.new(protocol)
-
-  #   transport.open()
-
-  #   client.ping()
-
-  # rescue Thrift::Exception => tx
-  #   print 'Thrift::Exception: ', tx.message, "\n"
-  # end
+    RpcCaller::call_method :makeOrder, order_request
 end
 
-get '/orders/:order_id' do
-  order_id = params['order_id']
+get '/orders/:order_id/view' do
+  order_id = params['order_id'].to_i
+  order = RpcCaller::call_method :getOrderById, order_id
 
-  # get order by id and send status to view
-
-  erb :customer_status
+  erb :customer_status, locals: { order: order }
 end
 
 get '/update_status/:order_id' do
