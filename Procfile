@@ -1,1 +1,1 @@
-web: { bundle exec rackup -p $PORT & bash "cd core ; python server.py"; }
+web: { bundle exec rackup -p $PORT & bash -c "cd core ; python server.py"; }
