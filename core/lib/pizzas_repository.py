@@ -13,15 +13,15 @@ class PizzasRepository(object):
     def get_available_pizzas(cls):
         pizzas_dict = db.get('/pizzas', None)
         pizzas = {}
-        for pizza_id, pizza_dict in enumerate(pizzas_dict):
+        for pizza_id, pizza_dict in pizzas_dict.iteritems():
             if not pizza_dict:
                 continue
-            pizzas[str(pizza_id)] = cls._get_pizza_from_dict(pizza_id, pizza_dict)
+            pizzas[pizza_id.encode('utf-8')] = cls._get_pizza_from_dict(pizza_dict)
         return pizzas
 
     @classmethod
-    def _get_pizza_from_dict(cls, pizza_id, pizza_dict):
-        pizza = ttypes.Pizza(int(pizza_id),
-                             pizza_dict['imageUrl'],
-                             pizza_dict['products'])
+    def _get_pizza_from_dict(cls, pizza_dict):
+        pizza = ttypes.Pizza(int(pizza_dict['id']),
+                            pizza_dict['imageUrl'],
+                            [p.encode('utf-8') for p in pizza_dict['products']])
         return pizza

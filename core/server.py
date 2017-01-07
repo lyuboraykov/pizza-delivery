@@ -16,6 +16,9 @@ from pizza_delivery import (
 
 from lib.orders_repository import OrdersRepository
 from lib.pizzas_repository import PizzasRepository
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 class PizzaDeliveryHandler:
     def __init__(self):
