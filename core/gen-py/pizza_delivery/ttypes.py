@@ -18,28 +18,25 @@ except:
 
 class OrderStatus:
   PENDING = 0
-  ACCEPTED = 1
-  IN_PROGRESS = 2
-  QUALITY_CONTROL = 3
-  DELIVERING = 4
-  ON_DESTINATION = 5
+  COOKING = 1
+  QUALITY_CONTROL = 2
+  DELIVERING = 3
+  ON_DESTINATION = 4
 
   _VALUES_TO_NAMES = {
     0: "PENDING",
-    1: "ACCEPTED",
-    2: "IN_PROGRESS",
-    3: "QUALITY_CONTROL",
-    4: "DELIVERING",
-    5: "ON_DESTINATION",
+    1: "COOKING",
+    2: "QUALITY_CONTROL",
+    3: "DELIVERING",
+    4: "ON_DESTINATION",
   }
 
   _NAMES_TO_VALUES = {
     "PENDING": 0,
-    "ACCEPTED": 1,
-    "IN_PROGRESS": 2,
-    "QUALITY_CONTROL": 3,
-    "DELIVERING": 4,
-    "ON_DESTINATION": 5,
+    "COOKING": 1,
+    "QUALITY_CONTROL": 2,
+    "DELIVERING": 3,
+    "ON_DESTINATION": 4,
   }
 
 
@@ -203,25 +200,25 @@ class Order:
 class OrderRequest:
   """
   Attributes:
-   - firstName
-   - lastName
+   - name
    - deliveryAddress
    - phoneNumber
+   - pizzaId
   """
 
   thrift_spec = (
     None, # 0
-    (1, TType.STRING, 'firstName', None, None, ), # 1
-    (2, TType.STRING, 'lastName', None, None, ), # 2
-    (3, TType.STRING, 'deliveryAddress', None, None, ), # 3
-    (4, TType.STRING, 'phoneNumber', None, None, ), # 4
+    (1, TType.STRING, 'name', None, None, ), # 1
+    (2, TType.STRING, 'deliveryAddress', None, None, ), # 2
+    (3, TType.STRING, 'phoneNumber', None, None, ), # 3
+    (4, TType.I32, 'pizzaId', None, None, ), # 4
   )
 
-  def __init__(self, firstName=None, lastName=None, deliveryAddress=None, phoneNumber=None,):
-    self.firstName = firstName
-    self.lastName = lastName
+  def __init__(self, name=None, deliveryAddress=None, phoneNumber=None, pizzaId=None,):
+    self.name = name
     self.deliveryAddress = deliveryAddress
     self.phoneNumber = phoneNumber
+    self.pizzaId = pizzaId
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -234,22 +231,22 @@ class OrderRequest:
         break
       if fid == 1:
         if ftype == TType.STRING:
-          self.firstName = iprot.readString()
+          self.name = iprot.readString()
         else:
           iprot.skip(ftype)
       elif fid == 2:
         if ftype == TType.STRING:
-          self.lastName = iprot.readString()
+          self.deliveryAddress = iprot.readString()
         else:
           iprot.skip(ftype)
       elif fid == 3:
         if ftype == TType.STRING:
-          self.deliveryAddress = iprot.readString()
+          self.phoneNumber = iprot.readString()
         else:
           iprot.skip(ftype)
       elif fid == 4:
-        if ftype == TType.STRING:
-          self.phoneNumber = iprot.readString()
+        if ftype == TType.I32:
+          self.pizzaId = iprot.readI32()
         else:
           iprot.skip(ftype)
       else:
@@ -262,43 +259,43 @@ class OrderRequest:
       oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
       return
     oprot.writeStructBegin('OrderRequest')
-    if self.firstName is not None:
-      oprot.writeFieldBegin('firstName', TType.STRING, 1)
-      oprot.writeString(self.firstName)
-      oprot.writeFieldEnd()
-    if self.lastName is not None:
-      oprot.writeFieldBegin('lastName', TType.STRING, 2)
-      oprot.writeString(self.lastName)
+    if self.name is not None:
+      oprot.writeFieldBegin('name', TType.STRING, 1)
+      oprot.writeString(self.name)
       oprot.writeFieldEnd()
     if self.deliveryAddress is not None:
-      oprot.writeFieldBegin('deliveryAddress', TType.STRING, 3)
+      oprot.writeFieldBegin('deliveryAddress', TType.STRING, 2)
       oprot.writeString(self.deliveryAddress)
       oprot.writeFieldEnd()
     if self.phoneNumber is not None:
-      oprot.writeFieldBegin('phoneNumber', TType.STRING, 4)
+      oprot.writeFieldBegin('phoneNumber', TType.STRING, 3)
       oprot.writeString(self.phoneNumber)
+      oprot.writeFieldEnd()
+    if self.pizzaId is not None:
+      oprot.writeFieldBegin('pizzaId', TType.I32, 4)
+      oprot.writeI32(self.pizzaId)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
 
   def validate(self):
-    if self.firstName is None:
-      raise TProtocol.TProtocolException(message='Required field firstName is unset!')
-    if self.lastName is None:
-      raise TProtocol.TProtocolException(message='Required field lastName is unset!')
+    if self.name is None:
+      raise TProtocol.TProtocolException(message='Required field name is unset!')
     if self.deliveryAddress is None:
       raise TProtocol.TProtocolException(message='Required field deliveryAddress is unset!')
     if self.phoneNumber is None:
       raise TProtocol.TProtocolException(message='Required field phoneNumber is unset!')
+    if self.pizzaId is None:
+      raise TProtocol.TProtocolException(message='Required field pizzaId is unset!')
     return
 
 
   def __hash__(self):
     value = 17
-    value = (value * 31) ^ hash(self.firstName)
-    value = (value * 31) ^ hash(self.lastName)
+    value = (value * 31) ^ hash(self.name)
     value = (value * 31) ^ hash(self.deliveryAddress)
     value = (value * 31) ^ hash(self.phoneNumber)
+    value = (value * 31) ^ hash(self.pizzaId)
     return value
 
   def __repr__(self):

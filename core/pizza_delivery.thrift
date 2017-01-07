@@ -17,10 +17,10 @@ struct Order {
 }
 
 struct OrderRequest {
-    1: required string firstName
-    2: required string lastName
-    3: required string deliveryAddress
-    4: required string phoneNumber
+    1: required string name
+    2: required string deliveryAddress
+    3: required string phoneNumber
+    4: required i32 pizzaId
 }
 
 struct Pizza {
