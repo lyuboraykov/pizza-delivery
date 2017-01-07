@@ -1,5 +1,7 @@
 get '/restaurant' do
-  orders = Hash.new
+  orders = RpcCaller::call_method :getAllOrders, nil
 
-  erb :restaurant, locals: {orders: orders}
+  p orders
+
+  erb :restaurant
 end
