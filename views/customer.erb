@@ -21,17 +21,17 @@
 
     <div class="pizzas-form hidden"> 
       <div class="pizzas-container">
-        <% pizzas[:pizzas].each do |pizza| %>
-          <div class="pizza-wrapper" id="<%= pizza[1][:id] %>">
-            <div class="pizza-image" style="background-image: url('<%= pizza[1][:image]%>')">
+        <% pizzas.each do |pizza| %>
+          <div class="pizza-wrapper" id="<%= pizza[1].id %>">
+            <div class="pizza-image" style="background-image: url('<%= pizza[1].imageUrl%>')">
             </div>
             <div class="pizza-description">
               <p class="pizza-heading"><%= pizza[0] %></p>
               <hr class="pizza-heading-separator">
-              <p class="pizza-ingredients"><%= pizza[1][:products].join ", " %></p>
+              <p class="pizza-ingredients"><%= pizza[1].products.join ", " %></p>
             </div>
             <div class="pizza-order">
-              <button>Добави в количка</button>
+              <button class="add-pizza">Добави в количка</button>
             </div>
           </div>
         <% end %>

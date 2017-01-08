@@ -34,5 +34,6 @@ pizzas_hash = {
 }
 
 get '/customer' do
-  erb :customer, locals: {pizzas: pizzas_hash}
+  pizzas = RpcCaller::call_method :getAvailablePizzas, nil
+  erb :customer, locals: { pizzas: pizzas }
 end

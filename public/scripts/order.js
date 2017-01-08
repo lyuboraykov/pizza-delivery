@@ -48,3 +48,18 @@ $('.next-button').click(function(event) {
     }});
   }, 400);
 });
+
+$(".add-pizza").click(function() {
+  window.localStorage.pizzaName = $($(this).parent().parent()).find(".pizza-heading").html();
+  alert("Вие добавихте " + $($(this).parent().parent()).find(".pizza-heading").html() + " във вашата количка!");
+});
+
+
+$(".next-button").click(function() {
+  var review = "<span>Име: " + ($("#name").val() || "") + "</span>" +
+    "<span>Адрес: " + ($("#address").val() || "") + "</span>" +
+    "<span>Телефон: " + ($("#phone").val() || "") + "</span>" +
+    "<span>Пица: " + (window.localStorage.pizzaName || "") + "</span>";
+
+  $(".review-container").html(review);
+});
