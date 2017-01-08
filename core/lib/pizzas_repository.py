@@ -22,6 +22,6 @@ class PizzasRepository(object):
     @classmethod
     def _get_pizza_from_dict(cls, pizza_dict):
         pizza = ttypes.Pizza(int(pizza_dict['id']),
-                            pizza_dict['imageUrl'],
-                            [p.encode('utf-8') for p in pizza_dict['products']])
+                             pizza_dict['imageUrl'],
+                             [p.encode('utf-8') for p in pizza_dict['products']])
         return pizza
