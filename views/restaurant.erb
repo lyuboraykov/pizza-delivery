@@ -7,21 +7,24 @@
       <% orders.each do |order| %>
         <li class="order-item" data-order-id=<%= order.id %> >
           <span class="order-title">Поръчка <%= order.id %></span>
+          <span class="order-pizza">
+            <%=
+              result = ''
+              pizzas.keys.each do |key|
+                if pizzas[key].id == order.pizzaId
+                  result = key
+                end
+              end
+              result
+            %>
+          </span>
         </li>
       <% end %>
-
     </ul>
   </div>
 
   <div class="details-view">
-    <!-- <h1>Информация за поръчката</h1>
-    <hr class="status_separator">
-    <div class="progress_container">
-      <div class="status">Приемане</div>
-      <div class="status">Приготвяне</div>
-      <div class="status">Проверка на качеството</div>
-      <div class="status">На път за адрес</div>
-      <div class="status">Доставена</div>
-    </div> -->
   </div>
 </div>
+
+<script src="/scripts/update_restaurant.js" charset="utf-8" defer></script>

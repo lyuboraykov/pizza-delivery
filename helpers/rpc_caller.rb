@@ -10,7 +10,7 @@ class RpcCaller
       transport.open()
 
       if arguments
-        result = client.method(method_name).call(arguments)
+        result = client.method(method_name).call(*arguments)
       else
         result = client.method(method_name).call
       end

@@ -185,6 +185,7 @@ body,
     justify-content: center;
     font-size: 1.5rem;
     align-items: center;
+    cursor: pointer;
 }
 
 .pizza-logo {
@@ -245,24 +246,62 @@ body,
     font-size: 1rem;
     border-bottom: 1px solid black;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
 
 .order-item.order-title {
     cursor: default;
 }
 
-.order-item.order-title:hover {
-    border-color: black;
-    color: black;
-}
-
-.order-item:hover {
-    border-color: blue;
-    color: blue;
-}
-
 .order-item > span {
     line-height: 3rem;
 }
 
-.order-item-wrapper {}
+.order-pizza {
+    text-transform: uppercase;
+}
+
+.active-list-item {
+    background-color: #346187;
+    color: white;
+}
+
+.details-view .progress_container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.details-view .status {
+    width: 50%;
+}
+
+.details-view {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.pizza-info-logo {
+    width: 50%;
+    height: 20%;
+}
+
+.details-view h1 {
+    text-align: center;
+}
+
+.delivery-info-container {
+    display: flex;
+}
+
+.delivery-info-container div {
+    width: 50%;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
