@@ -25,21 +25,27 @@ class PizzaDeliveryHandler:
         self.log = {}
 
     def ping(self):
+        """"Health check of the service"""
         return "pong"
 
     def getOrderById(self, id):
+        """Get an order by id"""
         return OrdersRepository.get_order_by_id(id)
 
     def getAllOrders(self):
+        """Retrieve all orders"""
         return OrdersRepository.get_all_orders()
 
     def makeOrder(self, order_req):
+        """Create a new order"""
         return OrdersRepository.make_order(order_req)
 
     def updateOrderStatus(self, id, status):
+        """Change the status of an order"""
         return OrdersRepository.update_order_status(id, status)
 
     def getAvailablePizzas(self):
+        """Get all available pizzas"""
         return PizzasRepository.get_available_pizzas()
 
 
